@@ -1,0 +1,31 @@
+
+		<div class="row">
+			<div class="col-2">
+				<h1>Books Are A Uniquely<br>Portable Magic!</h1>
+				<p>To acquire the habit of reading is to construct for yourself a refuge<br>from almost all the miseries of life.</p>
+				<a href="books.phtml" class="btn">Explore Now &#8594;</a>
+			</div>
+			<div class="col-2">
+				<img src="Images/livres.png">
+			</div>
+            <div class="small-container"><br>
+		<h2 class="title">Featured Products</h2>
+		<div class="row">
+			<div class="col-4">
+                 <?php foreach ($livres as $elem): ?>
+				<a href="book-details.php?id= <?= $elem['id']?>"><?php 
+  				if (isset($elem['images']) && file_exists($elem['images'])) {
+    			  echo '<img src="' . htmlspecialchars($elem['images']) . '" alt="Image">';
+  				} else {
+    			  echo 'Image not found.';
+ 				 }
+  ?></a>
+				<h4> <?= $elem['nom']?> </h4>
+				<p><?= $elem['auteur']?></p>
+                <?php endforeach ?>
+			</div>
+        
+		</div>
+	</div>
+</div>
+	

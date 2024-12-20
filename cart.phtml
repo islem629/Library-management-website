@@ -1,0 +1,81 @@
+<div class="small-container cart-page">
+    <h2 class="title">Borrow Cart</h2>
+     <form method="post" action="borrowbook.php">
+    <table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <?php foreach ($books as $book): ?>
+            <tr>
+                <td>
+                    <input type="checkbox" class="borrow-checkbox" name="selected_books[]" value="<?php echo $book['id']; ?>">
+                </td>
+                <td>
+                    <div class="cart-info">
+                        <img src="<?php echo $book['images']; ?>" alt="<?php echo $book['nom']; ?>">
+                    </div>
+                </td>
+                <td>
+                    <p><?php echo $book['nom']; ?></p>
+                </td>
+                <td>
+                   <a href="removeitem.php?id=<?= htmlspecialchars($book['id']) ?>" > Remove </a>
+
+
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            
+        </tbody>
+    </table>
+     
+    <div class="cart-actions">
+        <button type="submit "id="confirmBorrow" class="btn" disabled>Confirm Borrow</button>
+        <p class="warning-text" id="warningMessage" style="color: red; display: none;">You can borrow a maximum of 3 books.</p>
+    </div>
+     </form>  
+</div>
+
+<script>
+    const borrowCheckboxes = document.querySelectorAll('.borrow-checkbox');
+    const confirmButton = document.getElementById('confirmBorrow');
+    const warningMessage = document.getElementById('warningMessage');
+    const removeButtons = document.querySelectorAll('.remove-btn');
+
+    // Handle checkbox selection and limit
+    borrowCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const selectedBooks = document.querySelectorAll('.borrow-checkbox:checked');
+            if (selectedBooks.length > 3) {
+                checkbox.checked = false;
+                warningMessage.style.display = 'block';
+            } else {
+                warningMessage.style.display = 'none';
+            }
+
+            confirmButton.disabled = selectedBooks.length === 0;
+        });
+    });
+    
+</script>
+<style>
+th {
+    background-color: #1f6521;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+}
+th:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+</style>

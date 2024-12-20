@@ -1,0 +1,171 @@
+
+<body>
+<div class="tables">
+<table id="table" >
+  <tr>
+    <th>Name</th>
+    <th>Author</th>
+	<th>Genre</th>
+    <th>Image</th>
+    <th>Remove</th>
+    <th>Modify</th>
+</tr >
+ <?php foreach ($livres as $elem): ?>
+<tr>
+	 <td><?php echo $elem['nom']; ?></td>
+    <td><?php echo $elem['auteur']; ?></td>
+    <td><?php echo $elem['genre']; ?></td>
+	 <td><img src="<?php echo $elem['images']; ?> " width="50" height="50"></td>
+   <td><a href="book-supp.php?id= <?=$elem['id']?>" class="btn remove-btn"> <button >Remove</button></td>
+    <td><a href="book-modif.php?id= <?=$elem['id']?>" class="btn modify-btn" > <button >Modify</button></td> 
+</tr><br>
+<?php endforeach ?>
+</table>
+</div>
+<h2>Add Product</h2>
+ <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
+  <label for="p-name">Book Name :</label><br>
+  <input type="text" id="p-name" name="name" ><br>
+<label for="category">Genre :</label><br>
+<input type="text" id="brand" name="type" ><br><br>
+	  <label for="brand">Author Name :</label><br><br>
+  <input type="text" id="brand" name="author" ><br><br>
+	  <label for="brand">Description :</label><br>
+  <input type="text" id="brand" name="description" ><br><br>
+	<label for="image">Image :</label><br>
+  <input type="file" name="fileImage" id="multiImage_file"  />
+ <br><br>
+  <button type="submit" class="button">Submit</button>
+</form>  
+<style>
+    
+/* Table container styling */
+.tables {
+
+    width: 90%;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table header styling */
+th {
+    background-color: #1f6521;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Table header hover effect */
+th:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+
+/* Table rows styling */
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s;
+}
+
+/* Table data styling */
+td {
+    text-align: center;
+    padding: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+/* Image inside the table */
+td img {
+
+    transition: transform 0.3s ease;
+}
+
+td img:hover {
+    transform: scale(1.2);
+}
+
+/* Buttons inside the table */
+td .btn {
+    text-decoration: none;
+    color: white;
+    background-color: #1f6521;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+td .btn:hover {
+    background-color: #333;
+    transform: scale(1.1);
+}
+
+td button {
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+body {
+    background-color: #edeae5;
+}
+
+form {
+    margin-left: 35%;
+    border: solid #1f6521 2px;
+    width: 25%;
+    padding: 2%;
+    margin-top: 80px;
+
+}
+
+input[type="text"] {
+    font-family: Calibri, "Calibri Light";
+    width: 70%;
+    height: 40px;
+    border: groove 0.5px;
+    border-radius: 0;
+    border-color: #1f6521;
+}
+
+label {
+    font-size: 15pt
+}
+
+h2 {
+    margin-left: 100px;
+    font-size: 30px;
+}
+
+table {
+    margin-left: 10%;
+    min-width: 35%;
+    height: 30%;
+    padding: 2px;
+    border: solid #1f6521 2px;
+    flex-basis: 50%;
+    margin-top: 6%;
+
+}
+
+</style>
+
+</body>
+</html>

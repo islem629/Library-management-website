@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Total Orders</th>
+            <th>Non-Returned Books</th>
+            <th>Days Remaining</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($users as $user): ?>
+        <tr>
+            <td><?= htmlspecialchars($user['user_id']) ?></td>
+            <td><?= htmlspecialchars($user['username']) ?></td>
+            <td><?= htmlspecialchars($user['email']) ?></td>
+            <td><?= htmlspecialchars($user['total_orders']) ?></td>
+            <td><?= htmlspecialchars($user['non_returned_books'] ?: 0) ?></td>
+            <td><?= $user['days_remaining'] !== null ? htmlspecialchars($user['days_remaining']) : 'No active orders' ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

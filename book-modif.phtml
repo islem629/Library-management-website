@@ -1,0 +1,84 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+ <div class="add">
+<h2>Edit Product</h2>
+ <form action="<?= $_SERVER['PHP_SELF']?>" method="post">
+    <input  type="hidden" name="id" value=" <?= $book['id']?>">
+  <label for="p-name">Book Name :</label><br>
+  <input type="text" id="p-name" name="name" value="<?= $book['nom']?>"><br>
+ <label for="brand">Author Name :</label><br><br>
+  <input type="text" id="brand" name="author" value="<?= $book['auteur']?>" ><br><br>
+  <label for="category">Genre :</label><br>
+<input type="text" id="brand" name="type" value="<?= $book['genre']?>" ><br><br>
+	  <label for="brand">Description :</label><br>
+  <input type="text" id="brand" name="description"  value="<?= $book['sommaire']?>"><br><br>
+  <label for="image">Image:</label><br>
+<img src="<?= "Images/".$book['images'] ?>" alt="Current Image" style="max-width: 200px; max-height: 200px; display: block; margin-bottom: 10px;">
+<input type="file" name="fileImage" id="multiImage_file" accept="image/*">
+ <br><br>
+  <button type="submit" class="button">Submit</button>
+</form>  
+</div>
+</body>
+<style>
+body {
+    background-color: #edeae5;
+}
+
+form {
+    margin-left: 35%;
+    border: solid #1f6521 2px;
+    width: 25%;
+    padding: 2%;
+    margin-top: 80px;
+
+}
+
+input[type="text"] {
+    font-family: Calibri, "Calibri Light";
+    width: 70%;
+    height: 40px;
+    border: groove 0.5px;
+    border-radius: 0;
+    border-color: #1f6521;
+}
+
+label {
+    font-size: 15pt
+}
+
+h2 {
+    margin-left: 100px;
+    font-size: 30px;
+}
+
+table {
+    margin-left: 10%;
+    min-width: 35%;
+    height: 30%;
+    padding: 2px;
+    border: solid #1f6521 2px;
+    flex-basis: 50%;
+    margin-top: 6%;
+
+}
+.add {
+    flex-basis: 70%;
+}
+
+.tables {
+    display: flex;
+}
+
+#order-table {
+    flex-basis: 50%;
+    margin-right: 10%;
+}
+</style>
+</html>

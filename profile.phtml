@@ -1,0 +1,64 @@
+<body>
+    <div class="profile-container">
+        <h1>Your Borrowed Books</h1>
+        <?php if (empty($borrowedBooks)): ?>
+            <p>You have not borrowed any books.</p>
+        <?php else: ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Borrow Date</th>
+                        <th>Return Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($borrowedBooks as $book): 
+                    
+                        ?>
+                        <tr>
+                            <td><?= htmlspecialchars($book['nom']) ?></td>
+                            <td><?= date('Y-m-d', strtotime($book['date_deb'])) ?></td>
+                            <td><?= !empty($book['date_fin']) ? date('Y-m-d', strtotime($book['date_fin'])) : 'Not Set' ?></td>
+                            <td>
+                                <?php
+                                $currentDate = strtotime('today');
+                                $returnDate = strtotime($book['date_fin']);
+
+                                if ($book['etat'] == 0) {
+                                    // Book not returned
+                                    if ($currentDate <= $returnDate) {
+                                        echo '<span style="color: green;">You still have time to return the book.</span>';
+                                    } else {
+                                        echo '<span style="color: red;">Reminder: Late return!</span>';
+                                    }
+                                } else {
+                                    // Book returned
+                                    echo '<span style="color: green;">Returned</span>';
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php if ($book['etat'] == 0): ?>
+                                    <button class="btn-return" onclick="returnBook(<?= $book['id'] ?>)">Return</button>
+                                <?php else: ?>
+                                    <span>Already Returned</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+
+    <script>
+        function returnBook(bookId) {
+            // Redirect to a PHP script to handle the return action
+            window.location.href = 'returnbook.php?id=' + bookId;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+	<div class="small-container single-product">
+		<div class="row">
+			<div class="col-2">
+				<img src="<?php echo $elem['images']; ?>" width="70%">
+			</div>
+			<div class="col-2">
+				<p><?php echo $elem['genre']; ?></p>
+				<h1><?php echo $elem['nom']; ?></h1>
+				<h4><?php echo $elem['auteur']; ?></h4>
+				<form action="cart.php" method="post">
+                 <input  type="hidden" name="id" value="<?= $elem['id']?>">
+				  <input  type="hidden" name="nom" value="<?= $elem['nom']?>">
+				
+				<button type="submit" id="check">Checkout</button>
+				</form>
+				<h3>Book Details</h3>
+				<br>
+				<p><?php echo $elem['sommaire']; ?></p>
+              
+            </div>
+		</div>
+	</div>
+    

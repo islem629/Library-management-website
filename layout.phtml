@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="booklandstyle.css">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<div class="header">	
+	<div class="container">
+		<div class="navbar">
+		<div class="logo">
+			<a href="bookland.php"><img src="Images/BookLand - Logo (Black).png" width="125px"></a>
+		</div>
+		
+		<nav>
+			<ul id="MenuItems">
+				<li><a href="bookland.php">Home</a></li>
+				<li><a href="aboutus.html">About</a></li>
+			<?php if (isset($_SESSION["username"]) && $_SESSION["role"] == 'admin') { ?>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle">Admin Pages</a>
+        <ul class="dropdown-menu">
+            <li><a href="gestionbook.php">Manipulate Books</a></li>
+            <li><a href="gestionorder.php">Manipulate Orders</a></li>
+            <li><a href="gestionUser.php">Manipulate Users</a></li>
+        </ul>
+    </li>
+<?php } 
+else { ?>
+ <li><a href="profile.php">Orders</a></li>
+<?php
+}
+?>
+
+			<?php 
+			if(isset($_SESSION["username"])){
+			?>
+			 <li><a href="logout.php">Logout</a></li> 
+			 <?php } ?>
+			</ul>
+		</nav>
+			<a href="cart.php"><img src="Images/cart.png" width="30px" height="30px"></a>
+			<img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
+		</div>
+		
+<body>
+	<?php
+	include $template.'.phtml';
+	?>
+</body>
+
+	<script>
+		var MenuItems = document.getElementById("MenuItems");
+		MenuItems.style.maxHeight= "0px";
+		
+			
+		function menutoggle(){
+			if(MenuItems.style.maxHeight == "0px")
+				{
+					MenuItems.style.maxHeight = "200px";
+				}
+			else
+				{
+					MenuItems.style.maxHeight = "0px";
+				}
+		} 
+		
+	</script>
+	<style>
+		/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Hide the dropdown menu by default */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the dropdown toggle */
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+/* Style for each dropdown item */
+.dropdown-menu li {
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+/* Links inside the dropdown */
+.dropdown-menu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+}
+
+/* Change color on hover */
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+	</style>
+
+</html>

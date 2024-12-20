@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <h1>Gestion des Commandes</h1>
+
+    <table class="table table-striped table-bordered mt-4">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Book ID</th>
+                <th>Nom du Livre</th>
+                <th>Date Début</th>
+                <th>Date Fin</th>
+                <th>État</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($orders as $order): ?>
+                <tr>
+                    <td><?= htmlspecialchars($order['id']) ?></td>
+                    <td><?= htmlspecialchars($order['user_id']) ?></td>
+                    <td><?= htmlspecialchars($order['book_id']) ?></td>
+                    <td><?= htmlspecialchars($order['book_name']) ?></td>
+                    <td><?= htmlspecialchars($order['date_deb']) ?></td>
+                    <td><?= htmlspecialchars($order['date_fin']) ?></td>
+                    <td>
+                        <?php if ($order['etat'] == 0): ?>
+                            <span class="badge bg-warning">Non Finalisée</span>
+                        <?php else: ?>
+                            <span class="badge bg-success">Finalisée</span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <a href="deleteOrder.php?id=<?= $order['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')">Supprimer</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
